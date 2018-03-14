@@ -1,0 +1,25 @@
+
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <a  routerLinkActive="active" routerLink="/home" class="navbar-brand">
+        Demo
+    </a>
+    <button class="navbar-toggler">
+        <span class="navbar-togger-icon"></span>
+    </button>
+    <div class="collapse show navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li routerLinkActive="active" class="nav-item">
+                <a routerLink="/cart" class="nav-link">Shopping Cart</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" (click)="toggleMenu()">{{ username }}</a>
+                <div class="dropdown-menu" [class.show]="isShowMenu">
+                    <a class="dropdown-item">My Orders</a>
+                    <a class="dropdown-item">Manage Orders</a>
+                    <a class="dropdown-item">Manage Products</a>
+                    <a class="dropdown-item">Log Out</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
