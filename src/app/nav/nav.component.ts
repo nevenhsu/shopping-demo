@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { AppUser } from '../models/app-user';
 
 @Component({
   selector: 'app-nav',
@@ -7,18 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  isShowMenu: boolean;
-  username: string;
+  appUser: AppUser;
 
-  constructor() { }
+  constructor(public auth: AuthService) {}
 
   ngOnInit() {
-    this.isShowMenu = false;
-    this.username = 'Username';
+    this.auth.currentUser$.subscribe(appUser => this.appUser = appUser);
   }
-  
-  toggleMenu() {
-    this.isShowMenu = !this.isShowMenu;
+
+  logout() {
+    this.auth.logout();
   }
 
 }

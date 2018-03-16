@@ -1,6 +1,5 @@
-
 <nav class="navbar navbar-expand navbar-light bg-light">
-    <a  routerLinkActive="active" routerLink="/home" class="navbar-brand">
+    <a routerLinkActive="active" routerLink="/" class="navbar-brand">
         Demo
     </a>
     <button class="navbar-toggler">
@@ -11,13 +10,25 @@
             <li routerLinkActive="active" class="nav-item">
                 <a routerLink="/cart" class="nav-link">Shopping Cart</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" (click)="toggleMenu()">{{ username }}</a>
-                <div class="dropdown-menu" [class.show]="isShowMenu">
-                    <a class="dropdown-item">My Orders</a>
-                    <a class="dropdown-item">Manage Orders</a>
-                    <a class="dropdown-item">Manage Products</a>
-                    <a class="dropdown-item">Log Out</a>
+
+            <ng-template #anonymousUser>
+                <li routerLinkActive="active"
+                    class="nav-item">
+                    <a routerLink="/login" class="nav-link">Login</a>
+                </li>
+            </ng-template>
+
+            <li *ngIf="appUser; else anonymousUser"
+                class="nav-item dropdown"
+                ngbDropdown>
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle>{{ appUser.name }}</a>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+                    <ng-container *ngIf="appUser.isAdmin">
+                        <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+                        <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+                    </ng-container>
+                    <a class="dropdown-item" (click)="logout()">Log Out</a>
                 </div>
             </li>
         </ul>
