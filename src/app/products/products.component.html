@@ -1,3 +1,18 @@
-<p>
-  products works!
-</p>
+<div class="row">
+    <div class="col-3">
+        <div class="sticky-top">
+            <app-product-filter [query]="query"></app-product-filter>
+        </div>
+    </div>
+
+    <div class="col" *ngIf="cart$ | async as cart">
+        <div class="row">
+            <ng-container *ngFor="let p of filterProducts; let i = index">
+                <div class="col-6">
+                    <app-product-card [product]="p" [cart]="cart"></app-product-card>
+                </div>
+                <div *ngIf="(i + 1) % 2 === 0" class="w-100 my-3"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>

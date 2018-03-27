@@ -1,0 +1,5 @@
+<div class="row no-gutters h-100">
+    <button (click)="removeFromCart()" class="btn btn-secondary col-2">-</button>
+    <p class="col text-center my-auto">{{ cart.getQuantity(product) }} in cart</p>
+    <button (click)="addToCart()" class="btn btn-secondary col-2">+</button>
+</div>
