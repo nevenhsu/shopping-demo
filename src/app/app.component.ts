@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './shared/services/auth.service';
 import { Router } from '@angular/router';
-import { UserService } from './services/user.service';
+import { UserService } from './shared/services/user.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AppUser } from './models/app-user';
+import { AppUser } from './shared/models/app-user';
 
 @Component({
   selector: 'app-root',

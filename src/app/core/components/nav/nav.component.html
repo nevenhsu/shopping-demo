@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <div class="container">
+
+            <a routerLinkActive="active" routerLink="/" class="navbar-brand">
+                <i class="fa fa-leaf"></i>
+            </a>
+
+            <div class="collapse show navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li routerLinkActive="active" class="nav-item">
+                        <a routerLink="/cart" class="nav-link">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span *ngIf="cart$ | async as cart"
+                                  class="badge badge-pill badge-warning">{{ cart.totalCount }}</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <ng-template #anonymousUser>
+                        <li routerLinkActive="active"
+                            class="nav-item">
+                            <a routerLink="/login" class="nav-link">Login</a>
+                        </li>
+                    </ng-template>
+
+                    <li *ngIf="appUser; else anonymousUser"
+                        class="nav-item dropdown"
+                        ngbDropdown>
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle>{{ appUser.name }}</a>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+                            <ng-container *ngIf="appUser.isAdmin">
+                                <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+                                <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+                            </ng-container>
+                            <a class="dropdown-item" (click)="logout()">Log Out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+    </div>
+</nav>

@@ -17,6 +17,12 @@
     ],
     "types": [
       "firebase"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "shared/*": [
+        "app/shared/*"
+      ]
+    }
   }
 }
