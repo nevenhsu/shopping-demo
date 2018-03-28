@@ -17,7 +17,9 @@ export class UserService {
   }
 
   get(uid: string): Observable<AppUser> {
-    return this.db.object('/users/' + uid).valueChanges() as Observable<AppUser>;
+    return this.db.object<AppUser>('/users/' + uid).valueChanges().map(user => {
+      return new AppUser({ uid: uid, ...user });
+    });
   }
 
 }

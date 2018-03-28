@@ -5,7 +5,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng5-validation';
 import { DataTableModule } from 'angular5-data-table';
 
@@ -22,17 +22,21 @@ import { ProductsComponent } from './products/products.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { ProductService } from './services/product.service';
 import { CategoriesService } from './services/categories.service';
 import { AuthGuard } from './services/auth-guard.service';
-import { AdminAuthGuard } from './services/admin-auth-guard.service';
-import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
+import { OrderService } from './services/order.service';
 import { CartsService } from './services/carts.service';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
+import { ShippingCardComponent } from './shipping-card/shipping-card.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+
 
 
 const appRoutes: Routes = [
@@ -44,7 +48,7 @@ const appRoutes: Routes = [
 
   {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
   {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
-  {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+  {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
 
   {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
@@ -69,7 +73,9 @@ const appRoutes: Routes = [
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShippingCardComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +95,8 @@ const appRoutes: Routes = [
     ProductService,
     AdminAuthGuard,
     CategoriesService,
-    CartsService],
+    CartsService,
+    OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

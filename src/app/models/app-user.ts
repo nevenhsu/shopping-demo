@@ -1,6 +1,11 @@
 
-export interface AppUser {
+export class AppUser {
+  uid: string;
   name: string;
   email: string;
-  isAdmin: boolean;
+  isAdmin = false;
+
+  constructor(init?: Partial<AppUser>) {
+    Object.assign(this, init);
+  }
 }
